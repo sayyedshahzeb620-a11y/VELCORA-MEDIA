@@ -328,3 +328,120 @@ h1{
 }
 
 }
+@media(max-width:768px){
+
+body{
+    overflow-x:hidden;
+}
+
+
+/* Navbar */
+
+nav{
+    width:85%;
+    padding:20px 0;
+}
+
+
+.brand span{
+    font-size:22px;
+}
+
+
+.brand small{
+    font-size:10px;
+}
+
+
+
+/* Hero */
+
+.hero{
+    min-height:75vh;
+    width:85%;
+}
+
+
+.hero-text{
+    text-align:left;
+}
+
+
+h1{
+    font-size:38px;
+    line-height:1.15;
+    letter-spacing:-1px;
+}
+
+
+.hero-text>p:not(.tag){
+
+    font-size:16px;
+
+}
+
+
+/* Buttons */
+
+.buttons{
+
+    flex-direction:column;
+    width:100%;
+
+}
+
+
+.primary,
+.secondary{
+
+    text-align:center;
+    width:100%;
+
+}
+
+
+/* Sections */
+
+section{
+
+    width:85%;
+    margin:80px auto;
+
+}
+
+
+h2{
+
+    font-size:32px;
+
+}
+
+
+/* Cards */
+
+.grid{
+
+    gap:20px;
+
+}
+
+
+.box{
+
+    padding:25px;
+
+}
+
+
+/* Whatsapp */
+
+.whatsapp{
+
+    right:15px;
+    bottom:15px;
+
+    padding:12px 18px;
+
+}
+
+}
