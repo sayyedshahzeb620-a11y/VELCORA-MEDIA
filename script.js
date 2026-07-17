@@ -1,10 +1,11 @@
 const scene = new THREE.Scene();
 
+
 const camera = new THREE.PerspectiveCamera(
-    75,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    1000
+75,
+window.innerWidth / window.innerHeight,
+0.1,
+1000
 );
 
 
@@ -15,12 +16,13 @@ const renderer = new THREE.WebGLRenderer({
 
 
 renderer.setSize(
-    window.innerWidth,
-    window.innerHeight
+window.innerWidth,
+window.innerHeight
 );
 
 
-document.getElementById("canvas")
+document
+.getElementById("canvas")
 .appendChild(renderer.domElement);
 
 
@@ -29,53 +31,118 @@ camera.position.z = 5;
 
 
 
-// Particle Geometry
+// 3D Particles
 
 const geometry = new THREE.BufferGeometry();
 
-const particles = 1200;
+const count = 900;
 
-const positions = new Float32Array(
-    particles * 3
-);
+const positions = new Float32Array(count * 3);
 
 
-for(let i=0;i<particles*3;i++){
+for(let i=0;i<count*3;i++){
 
     positions[i] =
-    (Math.random()-0.5)*15;
+    (Math.random()-0.5) * 12;
 
 }
 
 
 geometry.setAttribute(
-    'position',
-    new THREE.BufferAttribute(
-        positions,
-        3
-    )
+"position",
+new THREE.BufferAttribute(
+positions,
+3
+)
 );
 
 
 
 const material = new THREE.PointsMaterial({
 
-    color:0xffffff,
-    size:0.015,
-    transparent:true,
-    opacity:0.8
+color:0x8b5cf6,
+
+size:0.025,
+
+transparent:true,
+
+opacity:0.8
 
 });
 
 
 
-const points = new THREE.Points(
-    geometry,
-    material
+const particles = new THREE.Points(
+geometry,
+material
 );
 
 
-scene.add(points);
+scene.add(particles);
+
+
+
+
+// Floating 3D Circle
+
+const circleGeometry =
+new THREE.TorusGeometry(
+1.2,
+0.02,
+16,
+100
+);
+
+
+const circleMaterial =
+new THREE.MeshBasicMaterial({
+
+color:0x2563eb,
+
+transparent:true,
+
+opacity:0.4
+
+});
+
+
+const circle =
+new THREE.Mesh(
+circleGeometry,
+circleMaterial
+);
+
+
+circle.position.z=-1;
+
+scene.add(circle);
+
+
+
+
+
+// Mouse Movement
+
+let mouseX = 0;
+let mouseY = 0;
+
+
+document.addEventListener(
+"mousemove",
+(event)=>{
+
+mouseX =
+(event.clientX /
+window.innerWidth -0.5);
+
+
+mouseY =
+(event.clientY /
+window.innerHeight -0.5);
+
+
+});
+
 
 
 
@@ -84,17 +151,36 @@ scene.add(points);
 
 function animate(){
 
-    requestAnimationFrame(animate);
+requestAnimationFrame(animate);
 
 
-    points.rotation.y += 0.0008;
-    points.rotation.x += 0.0004;
+
+particles.rotation.y +=0.0008;
+
+particles.rotation.x +=0.0003;
 
 
-    renderer.render(
-        scene,
-        camera
-    );
+
+circle.rotation.x +=0.002;
+
+circle.rotation.y +=0.003;
+
+
+
+camera.position.x +=
+(mouseX*0.5 - camera.position.x)*0.02;
+
+
+camera.position.y +=
+(-mouseY*0.5 - camera.position.y)*0.02;
+
+
+
+renderer.render(
+scene,
+camera
+);
+
 
 }
 
@@ -104,12 +190,12 @@ animate();
 
 
 
+
 // Responsive
 
 window.addEventListener(
-'resize',
+"resize",
 ()=>{
-
 
 camera.aspect =
 window.innerWidth /
@@ -123,6 +209,5 @@ renderer.setSize(
 window.innerWidth,
 window.innerHeight
 );
-
 
 });
