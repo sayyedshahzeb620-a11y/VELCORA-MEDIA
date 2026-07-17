@@ -575,3 +575,48 @@ border-radius:30px;
 color:#aaa;
 
 }
+.contact-text{
+
+color:#aaa;
+max-width:600px;
+margin:0 auto 40px;
+line-height:1.7;
+
+}
+
+
+.contact-card{
+
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+
+}
+
+
+.contact-card a{
+
+text-decoration:none;
+color:white;
+
+padding:18px 25px;
+
+background:rgba(255,255,255,.06);
+
+border:1px solid rgba(255,255,255,.1);
+
+border-radius:20px;
+
+transition:.3s;
+
+}
+
+
+.contact-card a:hover{
+
+transform:translateY(-5px);
+
+border-color:#7c3aed;
+
+}
